@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
+      - name: Install Node Dep
+        run: npm i
       - name: Install Node Dependencies
         run: npm ci
         env:
