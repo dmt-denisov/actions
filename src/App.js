@@ -1,8 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
 
 function App() {
-  let a = 0;
+  //let a = 0;
   
   return (
     <div className="asd">
