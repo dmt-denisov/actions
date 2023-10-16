@@ -22,6 +22,8 @@ jobs:
         run: npm i
         env:
           CI: TRUE
+      - name: Test Code Linting
+        run: npm run lint
       - name: Save Linting Report
         run: npm run lint:report
         continue-on-error: true
