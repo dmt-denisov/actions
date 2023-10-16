@@ -13,5 +13,10 @@
     },
     "plugins": ["react", "react-hooks"],
     "rules": {
-    }
+    },
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      }
 }  
