@@ -3,25 +3,31 @@ name: Example NodeJS Workflow
 on: [pull_request]
 
 jobs:
-  run-linters:
-    name: Run linters
+  node_test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      # ESLint and Prettier must be in `package.json`
-      - name: Install Node.js dependencies
+          cache: 'npm'
+      - name: Install Node Dependencies
         run: npm i
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
+        env:
+          CI: TRUE
+      - name: Test Code Linting
+        run: npm run lint
+        continue-on-error: true
+      - name: Save Code Linting Report JSON
+        # npm script for ESLint
+        # eslint --output-file eslint_report.json --format json src
+        # See https://eslint.org/docs/user-guide/command-line-interface#options
+        run: npm run lint:report
+        # Continue to the next step even if this fails
+        continue-on-error: true
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@v2
         with:
-          eslint: true
-
+          report-json: "eslint_report.json"
