@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+         with:
+           ref: ${{ github.head_ref }}
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -27,7 +29,6 @@ jobs:
         run: npm run lint:report
         # Continue to the next step even if this fails
         continue-on-error: true
-      - name: Annotate Code Linting Results
-        uses: ataylorme/eslint-annotate-action@v2
-        with:
-          report-json: "eslint_report.json"
+      - uses: stefanzweifel/git-auto-commit-action@v5
+         with:
+           commit_message: Apply LINT REPORT changes
