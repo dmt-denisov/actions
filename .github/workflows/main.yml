@@ -30,5 +30,5 @@ jobs:
         # Continue to the next step even if this fails
         continue-on-error: true
       - uses: stefanzweifel/git-auto-commit-action@v5
-         with:
-           commit_message: Apply LINT REPORT changes
+        with:
+          commit_message: Apply LINT REPORT changes
