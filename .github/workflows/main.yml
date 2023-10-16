@@ -1,12 +1,11 @@
 name: Example NodeJS Workflow
-
 on: [pull_request]
-
 jobs:
   node_test:
     runs-on: ubuntu-latest
 
     permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
       contents: write
 
     steps:
@@ -24,8 +23,13 @@ jobs:
           CI: TRUE
       - name: Test Code Linting
         run: npm run lint
-      - name: Save Linting Report
+        continue-on-error: true
+      - name: Save Code Linting Report JSON
+        # npm script for ESLint
+        # eslint --output-file eslint_report.json --format json src
+        # See https://eslint.org/docs/user-guide/command-line-interface#options
         run: npm run lint:report
+        # Continue to the next step even if this fails
         continue-on-error: true
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
