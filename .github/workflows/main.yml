@@ -28,8 +28,8 @@ jobs:
         # Continue to the next step even if this fails
         continue-on-error: true
      - name: Annotate Code Linting Results
-      uses: ataylorme/eslint-annotate-action@1.0.4
-      if: always()
-      with:
-        repo-token: '${{ secrets.GITHUB_TOKEN }}'
-        report-json: 'eslint_report.json'
+       uses: ataylorme/eslint-annotate-action@1.0.4
+       if: always()
+       with:
+         repo-token: '${{ secrets.GITHUB_TOKEN }}'
+         report-json: 'eslint_report.json'
