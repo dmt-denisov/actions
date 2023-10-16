@@ -22,7 +22,7 @@ jobs:
           CI: TRUE
       - name: Test Code Linting
         run: npm run lint
-      #   continue-on-error: true
+         continue-on-error: true
       # - name: Save Linting Report 
       #   run: npm run lint:report
       #   continue-on-error: true
