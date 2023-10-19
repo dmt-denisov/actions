@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 
 function App() {
-  //let a = 0;
+  let a = 0;
   
   return (
     <div className="asd">
@@ -18,7 +18,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          test
+          test1
         </a>
       </header>
     </div>
